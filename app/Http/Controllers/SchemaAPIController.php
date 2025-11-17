@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Schemas\SchemaRegistry;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
-class SchemaController extends Controller
+class SchemaAPIController extends Controller
 {
     /**
      * GET /api/schema?schema=project
@@ -14,13 +13,13 @@ class SchemaController extends Controller
      */
     public function show(Request $request)
     {
-        $schemaName = Str::singular(last($request->segments()));
-
+        $schemaName = last($request->segments());
         if (!$schemaName) {
             return response()->json(['error' => 'Missing schema parameter'], 400);
         }
-
-        $schemaClass = SchemaRegistry::resolve($schemaName);
+        
+        $schemaClass = (new SchemaRegistry($schemaName))->resolve();
+        
 
         $schema = new $schemaClass;
 
@@ -35,13 +34,13 @@ class SchemaController extends Controller
      */
     public function update(Request $request)
     {
-        $schemaName = Str::singular(last($request->segments()));
+        $schemaName = last($request->segments());
 
         if (!$schemaName) {
             return response()->json(['error' => 'Missing schema parameter'], 400);
         }
 
-        $schemaClass = SchemaRegistry::resolve($schemaName);
+        $schemaClass = (new SchemaRegistry($schemaName))->resolve();
         $schema = new $schemaClass;
 
         // TODO: Aquí irá la lógica para guardar overrides en BD,
