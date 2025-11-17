@@ -7,7 +7,7 @@ abstract class BaseSchema
     /**
      * Campos base que TODOS los módulos deben tener.
      */
-    abstract public static function baseFields(): array;
+    abstract protected static function baseFields(): array;
 
     /**
      * Campos permitidos para personalizar (ej: required, label, etc).
@@ -19,6 +19,14 @@ abstract class BaseSchema
         $keys = array_keys($base);
 
         return $keys;
+    }
+
+    /**
+     * Retorna el schema completo (base + overrides).
+     */
+     public function getSchema(): array
+    {
+        return static::baseFields();
     }
 
     /**

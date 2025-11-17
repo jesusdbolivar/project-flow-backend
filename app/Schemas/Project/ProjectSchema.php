@@ -7,7 +7,7 @@ use App\Schemas\Base\FieldDefinition;
 
 class ProjectSchema extends BaseSchema
 {
-    public static function baseFields(): array
+    protected static function baseFields(): array
     {
         return static::removeNullValues([
             'project_code' => FieldDefinition::make('project_code','Código del Proyecto', 'text', true),
@@ -20,4 +20,5 @@ class ProjectSchema extends BaseSchema
             'end_date'     => FieldDefinition::make('end_date', 'Fecha Fin', 'date', false),
         ]);
     }
+
 }
