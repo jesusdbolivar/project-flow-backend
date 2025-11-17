@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Domain\Schemas\Project;
+namespace App\Schemas\Project;
 
-use App\Domain\Schemas\Base\BaseSchema;
-use App\Domain\Schemas\Base\FieldDefinition;
+use App\Schemas\Base\BaseSchema;
+use App\Schemas\Base\FieldDefinition;
 
 class ProjectSchema extends BaseSchema
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Schemas\Base;
+namespace App\Schemas\Base;
 
 class FieldDefinition
 {
